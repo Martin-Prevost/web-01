@@ -14,20 +14,19 @@ import card7 from "./assets/card-7.png";
 import card8 from "./assets/card-8.png";
 import card9 from "./assets/card-9.png";
 
-
 const CARDS_IMAGE = [
-    back,
-    card0,
-    card1,
-    card2,
-    card3,
-    card4,
-    card5,
-    card6,
-    card7,
-    card8,
-    card9,
-  ];  
+  back,
+  card0,
+  card1,
+  card2,
+  card3,
+  card4,
+  card5,
+  card6,
+  card7,
+  card8,
+  card9,
+];
 
 export class CardComponent extends Component {
   // is this card flipped?

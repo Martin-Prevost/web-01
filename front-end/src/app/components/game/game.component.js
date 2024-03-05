@@ -4,7 +4,6 @@ import { Component } from "../../scripts/component";
 import { CardComponent } from "./card/card.component";
 import "./game.component.css";
 
-
 const environment = {
   api: {
     host: "http://localhost:8081",
@@ -29,14 +28,14 @@ export class GameComponent extends Component {
     try {
       this._config = await this.fetchConfig();
     } catch (error) {
-      console.error("Failed to fetch the game configuration")
+      console.error("Failed to fetch the game configuration");
     }
     this._boardElement = document.querySelector(".cards");
 
     // create cards out of the config
     this._cards = this._config.ids.map((id) => new CardComponent(id));
 
-    this._cards.forEach(card => {
+    this._cards.forEach((card) => {
       this._boardElement.appendChild(card.getElement());
       card.getElement().addEventListener("click", () => this._flipCard(card));
     });
@@ -47,17 +46,24 @@ export class GameComponent extends Component {
   start() {
     this._startTime = Date.now();
     let seconds = 0;
-    document.querySelector("nav .navbar-title").textContent = `Player: ${this._name}. Elapsed time: ${seconds++}`;
+    document.querySelector("nav .navbar-title").textContent = `Player: ${
+      this._name
+    }. Elapsed time: ${seconds++}`;
 
     this._timer = setInterval(() => {
-      document.querySelector("nav .navbar-title").textContent = `Player: ${this._name}. Elapsed time: ${seconds++}`;
+      document.querySelector("nav .navbar-title").textContent = `Player: ${
+        this._name
+      }. Elapsed time: ${seconds++}`;
     }, 1000);
   }
 
   async fetchConfig() {
-    const respnse = await fetch(`${environment.api.host}/board?size=${this._size}`, {
-      method: "GET",
-    });
+    const respnse = await fetch(
+      `${environment.api.host}/board?size=${this._size}`,
+      {
+        method: "GET",
+      }
+    );
     if (respnse.status == 200) {
       return respnse.json();
     } else {

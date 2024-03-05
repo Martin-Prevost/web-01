@@ -16,9 +16,7 @@ export function Router(outlet) {
   this._templates = {};
   this._outlet = outlet;
 
-  window.addEventListener("beforeunload", (event) =>
-    this._onLocationChanged()
-  );
+  window.addEventListener("beforeunload", (event) => this._onLocationChanged());
   window.addEventListener("hashchange", (event) =>
     this._onLocationChanged(event.newURL)
   );
@@ -39,9 +37,7 @@ Router.prototype.register = function (hash, componentEntry) {
   }
 
   if (typeof hash !== "string") {
-    throw new TypeError(
-      `provided route url should be a string. Got: ${hash}`
-    );
+    throw new TypeError(`provided route url should be a string. Got: ${hash}`);
   } else {
     this._components[path] = componentEntry;
   }

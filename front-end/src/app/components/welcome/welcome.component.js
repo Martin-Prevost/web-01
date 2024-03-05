@@ -2,7 +2,6 @@ import template from "./welcome.component.html";
 import { Component } from "../../scripts/component";
 import "./welcome.component.css";
 
-
 /* class WelcomeComponent constructor  */
 export class WelcomeComponent extends Component {
   constructor() {
@@ -10,8 +9,8 @@ export class WelcomeComponent extends Component {
   }
 
   init() {
-    var form = document.querySelector("form.form-signin");
-  
+    const form = document.querySelector("form.form-signin");
+
     form.addEventListener(
       "submit",
       (event) => {
@@ -20,20 +19,19 @@ export class WelcomeComponent extends Component {
           event.stopPropagation();
           form.classList.add("was-validated");
         } else {
-          var name = event.srcElement.querySelector("#nickname").value;
-          var size = parseInt(event.srcElement.querySelector("#size").value);
-  
+          const name = event.srcElement.querySelector("#nickname").value;
+          const size = parseInt(event.srcElement.querySelector("#size").value);
+
           this._startGame(name, size);
         }
       },
       false
     );
-  
+
     return this;
   }
 
   _startGame(name, size) {
-    var gamePage = "./#game";
-    window.location = `${gamePage}?name=${name}&size=${size}`;
+    window.location = `./#game?name=${name}&size=${size}`;
   }
 }
