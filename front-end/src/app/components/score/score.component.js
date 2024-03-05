@@ -3,7 +3,6 @@ import template from "./score.component.html";
 import { Component } from "../../scripts/component";
 import "./score.component.css";
 
-/* class ScoreComponent constructor */
 export class ScoreComponent extends Component {
   constructor() {
     super(template);
