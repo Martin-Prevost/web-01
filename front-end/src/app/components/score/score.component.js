@@ -1,7 +1,7 @@
 import { parseUrl } from "../../scripts/utils";
 import template from "./score.component.html";
 import { Component } from "../../scripts/component";
-import "./score.component.css";
+import "./score.component.scss";
 
 export class ScoreComponent extends Component {
   constructor() {

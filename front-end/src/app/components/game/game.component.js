@@ -2,7 +2,8 @@ import { parseUrl } from "../../scripts/utils";
 import template from "./game.component.html";
 import { Component } from "../../scripts/component";
 import { CardComponent } from "./card/card.component";
-import "./game.component.css";
+import "./game.component.scss";
+import * as localforage from "localforage";
 
 const environment = {
   api: {
