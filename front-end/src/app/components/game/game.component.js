@@ -4,12 +4,7 @@ import { Component } from "../../scripts/component";
 import { CardComponent } from "./card/card.component";
 import "./game.component.scss";
 import * as localforage from "localforage";
-
-const environment = {
-  api: {
-    host: "http://localhost:8081",
-  },
-};
+import { environment } from "../../scripts/config.js";
 
 export class GameComponent extends Component {
   constructor() {
@@ -84,7 +79,7 @@ export class GameComponent extends Component {
     }
   }
 
-  goToScore() {
+  async goToScore() {
     localforage.setItem("matchedPairs", null);
     localforage.setItem("cards", null);
     localforage.setItem("name", null);
@@ -94,6 +89,19 @@ export class GameComponent extends Component {
       (Date.now() - this._startTime) / 1000
     );
     clearInterval(this._timer);
+
+    await fetch(`${environment.api.host}/scores`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: this._name,
+        size: this._size,
+        time: timeElapsedInSeconds,
+      }),
+    });
 
     setTimeout(() => {
       const scorePage = "./#score";
