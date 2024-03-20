@@ -25,24 +25,54 @@ export class ScoreComponent extends Component {
     } else {
       console.error("Failed to fetch the scores");
     }
+
+    document.getElementById("sortSize").addEventListener("click", () => {
+      const table = document.getElementById("score");
+      Array.from(table.rows)
+           .sort((a, b) => parseInt(b.cells[1].innerText) - parseInt(a.cells[1].innerText))
+           .forEach(row => table.appendChild(row));
+    });
+    document.getElementById("sortTime").addEventListener("click", () => {
+      const table = document.getElementById("score");
+      Array.from(table.rows)
+           .sort((a, b) => parseInt(a.cells[2].innerText) - parseInt(b.cells[2].innerText))
+           .forEach(row => table.appendChild(row));
+    });
+    document.getElementById("sortTimeBySize").addEventListener("click", () => {
+      const table = document.getElementById("score");
+      Array.from(table.rows)
+           .sort((a, b) => parseInt(a.cells[3].innerText) - parseInt(b.cells[3].innerText))
+           .forEach(row => table.appendChild(row));
+    });
+    document.getElementById("sortName").addEventListener("click", () => {
+      const table = document.getElementById("score");
+      Array.from(table.rows)
+           .sort((a, b) => a.cells[0].innerText.localeCompare(b.cells[0].innerText))
+           .forEach(row => table.appendChild(row));
+    });
   }
 
   showScores(scores) {
     const table = document.getElementById("score");
-    scores.forEach((score) => {
-      const row = document.createElement("tr");
+    scores.sort((a, b) => a.time / a.size - b.time / b.size)
+          .forEach((score) => {
+            const row = document.createElement("tr");
 
-      const name = document.createElement("td");
-      name.innerText = score.name;
-      const size = document.createElement("td");
-      size.innerText = score.size;
-      const time = document.createElement("td");
-      time.innerText = score.time;
-      row.appendChild(name);
-      row.appendChild(size);
-      row.appendChild(time);
+            const name = document.createElement("td");
+            name.innerText = score.name;
+            const size = document.createElement("td");
+            size.innerText = score.size;
+            const time = document.createElement("td");
+            time.innerText = score.time;
+            const timeBySize = document.createElement("td");
+            timeBySize.innerText = score.time / score.size;
 
-      table.appendChild(row);
-    });
+            row.appendChild(name);
+            row.appendChild(size);
+            row.appendChild(time);
+            row.appendChild(timeBySize);
+
+            table.appendChild(row);
+          });
   }
 }

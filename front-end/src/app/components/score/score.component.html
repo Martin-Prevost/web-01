@@ -3,12 +3,17 @@
   <div class="d-flex p-3">
     <div class="flex-grow-1 m-3">
       <h3 class="congrats">CONGRATS<br /><span id="name"></span></h3>
+      <button class="btn btn-primary" id="sortName">Sort by name</button>
+      <button class="btn btn-primary" id="sortTime">Sort by time</button>
+      <button class="btn btn-primary" id="sortSize">Sort by size</button>
+      <button class="btn btn-primary" id="sortTimeBySize">Sort by time by size</button>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Time</th>
             <th scope="col">Size</th>
+            <th scope="col">Time</th>
+            <th scope="col">Time by size</th>
           </tr>
         </thead>
         <tbody id="score"></tbody>
